@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WAN Lời Nhắn Gửi - Gửi thư ẩn danh</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Lora:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <a href="#" class="brand">
+            <span class="brand-icon">✉</span>
+            <span>WAN Lời Nhắn Gửi</span>
+        </a>
+
+        <span class="tagline">WAN Lời Nhắn Gửi - Gửi trọn yêu thương</span>
+    </header>
+
+    <main class="page">
+        <section class="intro">
+            <h1>Gửi thư ẩn danh</h1>
+            <p>
+                Soạn lời nhắn, nhập địa chỉ người nhận và gửi đi.
+                Danh tính của bạn được giữ kín.
+            </p>
+        </section>
+
+        <form id="mailForm" class="mail-card">
+            <div class="letter">
+
+                <div class="letter-head">
+                    <span class="airmail-label" aria-hidden="true">
+                        <span>WAN</span><span>Lời Nhắn Gửi</span>
+                    </span>
+                    <span class="stamp" aria-hidden="true">✉</span>
+                </div>
+
+                <section class="recipient-section">
+                    <h2>Gửi đến</h2>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="recipientName">Tên người nhận</label>
+                            <input
+                                id="recipientName"
+                                name="recipient_name"
+                                type="text"
+                                placeholder="Nhập tên người nhận"
+                                autocomplete="off"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="recipientEmail">Email người nhận</label>
+                            <input
+                                id="recipientEmail"
+                                name="recipient_email"
+                                type="email"
+                                placeholder="Nhập email người nhận"
+                                autocomplete="email"
+                                required
+                            >
+                        </div>
+                    </div>
+                </section>
+
+                <section class="message-section">
+                    <h2>Nội dung thư</h2>
+
+                    <label for="subject">Tiêu đề email</label>
+                    <input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        placeholder="Ví dụ: Xin chào bạn!"
+                        maxlength="150"
+                        required
+                    >
+
+                    <label for="message">Nội dung email</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        maxlength="5000"
+                        placeholder="Nhập nội dung thư của bạn..."
+                        required
+                    ></textarea>
+                </section>
+
+                <button id="sendButton" type="submit">
+                    <span>➤</span>
+                    <span id="buttonText">Gửi thư ẩn danh</span>
+                </button>
+
+                <p class="privacy-note">
+                    Email được gửi qua hệ thống Send Mail.
+                </p>
+
+                <div
+                    id="statusMessage"
+                    class="status-message"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                ></div>
+
+            </div>
+        </form>
+
+        <footer>
+            <a href="https://wanloinhangui.vn" target="_blank" rel="noopener noreferrer">WAN Lời Nhắn Gửi - Gửi trọn yêu thương</a>
+    </main>
+</body>
+</html>

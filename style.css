@@ -1,0 +1,539 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --red: #d9424f;
+    --blue: #2a4aa8;
+    --blue-dark: #1f3a8a;
+    --ink: #1b2a4a;
+    --muted: #5d6e8c;
+    --line: #cfd9e8;
+    --paper: #fbfcfd;
+    --sky: #e3e8ef;
+    --kraft: #8a97aa;
+    --kraft-dark: #6f7d94;
+
+    /* sọc thư hàng không: đỏ - trắng - xanh - trắng, nghiêng ~60°, mép mịn không răng cưa */
+    --stripes: repeating-linear-gradient(
+        120deg,
+        var(--red) 0,
+        var(--red) 9px,
+        #fff 10px,
+        #fff 15px,
+        var(--blue) 16px,
+        var(--blue) 25px,
+        #fff 26px,
+        #fff 31px,
+        var(--red) 32px
+    );
+}
+
+::selection {
+    background: rgba(42, 74, 168, 0.18);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Be Vietnam Pro", "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 10% 15%, #f4f7fb 0, transparent 340px),
+        radial-gradient(circle at 92% 88%, #d0d8e4 0, transparent 380px),
+        var(--sky);
+}
+
+a {
+    color: var(--blue);
+}
+
+/* ---------- Header ---------- */
+.topbar {
+    position: relative;
+    min-height: 74px;
+    padding: 14px 7% 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: var(--paper);
+    box-shadow: 0 6px 18px rgba(31, 45, 80, 0.08);
+}
+
+.topbar::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 8px;
+    background: var(--stripes);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+    text-decoration: none;
+    color: var(--blue-dark);
+    font-family: "Lora", Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 34px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 22px;
+    background: var(--blue);
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.tagline {
+    color: var(--muted);
+    font-family: "Lora", Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    text-align: right;
+}
+
+/* ---------- Page ---------- */
+.page {
+    width: min(840px, calc(100% - 40px));
+    margin: 60px auto 36px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 52px;
+}
+
+h1 {
+    margin: 0;
+    font-family: "Lora", Georgia, serif;
+    font-size: clamp(34px, 5vw, 50px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+/* dải sọc nhỏ dưới tiêu đề */
+h1::after {
+    content: "";
+    display: block;
+    width: 96px;
+    height: 6px;
+    margin: 18px auto 0;
+    background: var(--stripes);
+    border-radius: 1px;
+}
+
+.intro p {
+    max-width: 500px;
+    margin: 18px auto 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+/* ---------- Lá thư + phong bì ---------- */
+.mail-card {
+    position: relative;
+    isolation: isolate;
+    margin: 7px;
+}
+
+/* phong bì xám xanh nằm lệch phía sau lá thư */
+.mail-card::before {
+    content: "";
+    position: absolute;
+    inset: 16px -22px -24px 22px;
+    z-index: -2;
+    border-radius: 4px;
+    background:
+        radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.16) 0 1px, transparent 1.6px) 0 0 / 23px 23px,
+        linear-gradient(155deg, #9aa6b8, var(--kraft-dark));
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+        0 16px 32px rgba(31, 45, 80, 0.2);
+    transform: rotate(2.2deg);
+}
+
+/* tờ giấy nhạt lấp ló phía sau, tạo cảm giác xếp lớp */
+.mail-card::after {
+    content: "";
+    position: absolute;
+    inset: -12px 18px 20px -20px;
+    z-index: -1;
+    border-radius: 4px;
+    background: linear-gradient(160deg, #f6f8fb, #dfe6ef);
+    box-shadow:
+        inset 0 0 0 1px rgba(27, 42, 74, 0.06),
+        0 8px 18px rgba(31, 45, 80, 0.14);
+    transform: rotate(-1.8deg);
+}
+
+/* viền sọc nằm trên chính lá thư nên luôn nổi phía trên phong bì */
+.letter {
+    position: relative;
+    padding: 30px 34px 28px;
+    border: 18px solid transparent;
+    border-radius: 3px;
+    background:
+        repeating-linear-gradient(0deg, rgba(120, 140, 175, 0.05) 0 1px, transparent 1px 4px) padding-box,
+        linear-gradient(180deg, #ffffff, var(--paper) 40%) padding-box,
+        var(--stripes) border-box;
+    box-shadow:
+        0 0 0 7px #fff,
+        0 2px 6px 7px rgba(31, 45, 80, 0.12),
+        0 26px 50px rgba(31, 45, 80, 0.24);
+}
+
+/* ---------- Đầu thư ---------- */
+.letter-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.airmail-label {
+    display: inline-flex;
+    border: 2px solid var(--blue);
+    padding: 3px;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+.airmail-label span {
+    padding: 8px 13px;
+}
+
+.airmail-label span:first-child {
+    background: var(--red);
+}
+
+.airmail-label span:last-child {
+    background: var(--blue);
+}
+
+/* tem thư có viền răng cưa */
+.stamp {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 76px;
+    color: var(--blue);
+    font-size: 28px;
+    background:
+        linear-gradient(135deg, rgba(217, 66, 79, 0.1), rgba(42, 74, 168, 0.12)),
+        #fff;
+    border: 2px solid var(--blue);
+    outline: 5px dotted var(--line);
+    outline-offset: 2px;
+    transform: rotate(3deg);
+}
+
+/* dấu bưu điện */
+.stamp::after {
+    content: "";
+    position: absolute;
+    left: -46px;
+    top: 12px;
+    width: 58px;
+    height: 58px;
+    border: 2px solid rgba(42, 74, 168, 0.35);
+    border-radius: 50%;
+    background:
+        linear-gradient(transparent 46%, rgba(42, 74, 168, 0.3) 46% 54%, transparent 54%);
+    transform: rotate(-14deg);
+    pointer-events: none;
+}
+
+/* ---------- Form ---------- */
+h2 {
+    margin: 0 0 20px;
+    font-family: "Lora", Georgia, serif;
+    font-size: 20px;
+    color: var(--blue-dark);
+}
+
+.recipient-section {
+    padding-bottom: 10px;
+    margin-bottom: 26px;
+    border-bottom: 2px dashed var(--line);
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+}
+
+label {
+    display: block;
+    margin: 0 0 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 4px;
+    border: 0;
+    border-bottom: 1.5px solid var(--line);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 15px;
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+input {
+    height: 46px;
+    margin-bottom: 22px;
+}
+
+textarea {
+    min-height: 192px;
+    margin-bottom: 26px;
+    resize: vertical;
+    line-height: 32px;
+    padding-top: 0;
+    border-bottom: 0;
+    background-image: repeating-linear-gradient(
+        transparent 0 31px,
+        var(--line) 31px 32px
+    );
+    background-attachment: local;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9aa7bf;
+    font-style: italic;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 1.5px 0 0 var(--blue);
+    background: rgba(42, 74, 168, 0.04);
+}
+
+textarea:focus {
+    background-color: rgba(42, 74, 168, 0.03);
+}
+
+/* ---------- Nút gửi ---------- */
+button {
+    width: 100%;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background: linear-gradient(180deg, #3558bd, var(--blue));
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    box-shadow: 0 4px 0 var(--blue-dark), 0 10px 18px rgba(42, 74, 168, 0.25);
+    transition: filter 0.2s, transform 0.15s, box-shadow 0.15s;
+}
+
+button span:first-child {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+button:hover span:first-child {
+    transform: translateX(4px);
+}
+
+button:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--blue-dark);
+}
+
+button:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+    transform: none;
+    filter: none;
+}
+
+.privacy-note {
+    margin: 18px 0 0;
+    color: #7c8aa3;
+    font-size: 12px;
+    text-align: center;
+}
+
+.status-message {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.status-message.success {
+    color: #176b43;
+    background: #edf8f1;
+    border: 1px solid #bce4cb;
+    border-left: 5px solid #2e9d68;
+}
+
+.status-message.error {
+    color: #9c2929;
+    background: #fff0f0;
+    border: 1px solid #f0c4c4;
+    border-left: 5px solid var(--red);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    margin-top: 56px;
+    padding-top: 22px;
+    color: #6f7d96;
+    font-size: 13px;
+    text-align: center;
+    position: relative;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 64px;
+    height: 4px;
+    transform: translateX(-50%);
+    background: var(--stripes);
+}
+
+footer a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: var(--red);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+    .tagline {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 650px) {
+    .topbar {
+        padding: 14px 18px 20px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .tagline {
+        display: none;
+    }
+
+    .page {
+        margin-top: 36px;
+    }
+
+    .intro {
+        margin-bottom: 40px;
+    }
+
+    .mail-card {
+        margin: 5px;
+    }
+
+    .mail-card::before {
+        inset: 12px -10px -16px 10px;
+    }
+
+    .mail-card::after {
+        inset: -8px 8px 12px -10px;
+    }
+
+    .letter {
+        padding: 20px 14px 20px;
+        border-width: 12px;
+        box-shadow:
+            0 0 0 5px #fff,
+            0 2px 6px 5px rgba(31, 45, 80, 0.12),
+            0 20px 40px rgba(31, 45, 80, 0.22);
+    }
+
+    .letter-head {
+        margin-bottom: 24px;
+    }
+
+    .airmail-label {
+        font-size: 14px;
+    }
+
+    .airmail-label span {
+        padding: 7px 9px;
+    }
+
+    .stamp {
+        width: 50px;
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .stamp::after {
+        display: none;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
